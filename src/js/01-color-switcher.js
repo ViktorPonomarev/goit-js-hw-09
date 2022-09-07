@@ -20,30 +20,19 @@ let timerId = null;
 
 // Функция: цвет
 function onClickStartColor() {
-    btnStart.disabled = true;
-    btnStop.disabled = false;
+    refs.btnStart.disabled = true;
+    refs.btnStop.disabled = false;
 
     timerId = setInterval(() => {
         colorRandom = getRandomHexColor();
-        bodyEl.style.background = colorRandom;
+        refs.bodyEl.style.background = colorRandom;
   }, 1000);
 }
 
 // Функция: стоп- цвет
 function onClickStopColor() {
-    btnStart.disabled = false;
-    btnStop.disabled = true;
+    refs.btnStart.disabled = false;
+    refs.btnStop.disabled = true;
     clearInterval(timerId);
     
 } 
-
-//    btnStart.addEventListener("click", () => {
-//   timerId = setInterval(() => {
-//       bodyEl.style.background = colorRandom;
-//   }, 1000);
-//    });
-
-//    btnStop.addEventListener("click", () => {
-//   clearInterval(timerId);
-  
-// });
