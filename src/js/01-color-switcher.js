@@ -1,3 +1,8 @@
+// Для генерации случайного цвета используй функцию getRandomHexColor.
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
 // Находим слушателя
 const refs = {
     bodyEl: document.querySelector('body'),
@@ -13,29 +18,32 @@ refs.btnStop.addEventListener('click', onClickStopColor);
 // Глобальная переменная timerId
 let timerId = null;
 
-   startBtn.addEventListener("click", () => {
-  timerId = setInterval(() => {
-      bodyEl.style.background = colorRandom;
-  }, 1000);
-});
-
-// Функция- цвет
+// Функция: цвет
 function onClickStartColor() {
     btnStart.disabled = true;
     btnStop.disabled = false;
+
+    timerId = setInterval(() => {
+        colorRandom = getRandomHexColor();
+        bodyEl.style.background = colorRandom;
+  }, 1000);
 }
 
+// Функция: стоп- цвет
+function onClickStopColor() {
+    btnStart.disabled = false;
+    btnStop.disabled = true;
+    clearInterval(timerId);
+    
+} 
 
+//    btnStart.addEventListener("click", () => {
+//   timerId = setInterval(() => {
+//       bodyEl.style.background = colorRandom;
+//   }, 1000);
+//    });
 
-// stopBtn.addEventListener("click", () => {
+//    btnStop.addEventListener("click", () => {
 //   clearInterval(timerId);
-//   console.log(`Interval with id ${timerId} has stopped!`);
+  
 // });
-
-
-
-
-
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
