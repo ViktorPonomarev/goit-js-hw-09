@@ -39,8 +39,10 @@ class Timer {
       const time = this.convertMs(deltaTime);
       
       this.onTick(time);
+      console.log(time);
 }, 1000);
   }
+  
 
   /*Адская копипаста с библиотеки!
 Для подсчета значений используй готовую функцию convertMs, 
@@ -62,9 +64,10 @@ convertMs(ms) {
   const minutes = this.addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
   const seconds = this.addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
-
+  
   return { days, hours, minutes, seconds };
-}
+  }
+  
 
 // console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 // console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
@@ -94,14 +97,20 @@ refs.btnStart.addEventListener('click', timer.start.bind(timer));
 function updateClockfase({ days, hours, minutes, seconds }) {
   refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
 }
+console.log(refs.clockface.textContent);
 
 /*Библиотека flatpickr Дата и время.
  */
-// {
-//     enableTime: true,
-//     dateFormat: "Y-m-d H:i",
-// }
-
+const flatpickr = flatpickr("#datetime-picker", options = {
+  enableTime: true,
+  dateFormat: "Y-m-d H:i",
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    console.log(`Выбранная дата: ${selectedDates[0]}`);
+  },
+});
 
 
 
