@@ -6,7 +6,21 @@ import "flatpickr/dist/flatpickr.min.css";
 const refs = {
   btnStart: document.querySelector('button[data-start]'),
   clockface: document.querySelector('#datetime-picker'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+
+  timer: document.querySelector('.timer'),
+  field: document.querySelector('.field'),
+
 };
+
+/* Оформление таймера стилями
+ */
+// refs.timer.style.display = 'flex';
+// refs.timer.style.marginTop = '10px';
+// refs.field.marginRight = '10px';
 
 /*Запускаем таймер с помощью
 "Адской копипасты"
@@ -28,14 +42,16 @@ class Timer {
     start() {
     if (this.isActive) {
       return;
-}
-
+        }
+      
+/* Создаём таймер, он будет считать!
+ */
     const startTime = Date.now();
     this.isActive = true;
 
     this.intervalId = setInterval(() => {
       const currentTime = Date.now();
-      const deltaTime = startTime - currentTime;
+      const deltaTime = selectedDates[0].startTime - currentTime;
       const time = this.convertMs(deltaTime);
       
       this.onTick(time);
@@ -68,11 +84,7 @@ convertMs(ms) {
   return { days, hours, minutes, seconds };
   }
   
-
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
+  
 /* Форматирование времени!
 Принимает число, приводит к строке и добавляет 
 в начало 0 если число меньше 2-х знаков.
@@ -95,7 +107,11 @@ refs.btnStart.addEventListener('click', timer.start.bind(timer));
 Вичесляет сколько в них вмещает дней, часов, минут, секунд
  */
 function updateClockfase({ days, hours, minutes, seconds }) {
-  refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
+  // refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
+  refs.days.textContent = `${days}`;
+  refs.hours.textContent = `${hours}`;
+  refs.minutes.textContent = `${minutes}`;
+  refs.seconds.textContent = `${seconds}`;
 }
 console.log(refs.clockface.textContent);
 
@@ -111,6 +127,7 @@ const flatpickr = flatpickr("#datetime-picker", options = {
     console.log(`Выбранная дата: ${selectedDates[0]}`);
   },
 });
+
 
 
 
