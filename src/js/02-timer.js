@@ -64,7 +64,7 @@ const options = {
       btnStart.disabled = false;
      
       btnStart.addEventListener('click', () => {
-
+btnStart.disabled = true;
         const timer = setInterval(() => {
           
           const newTime = Date.now();
