@@ -2,131 +2,138 @@
 import flatpickr from "flatpickr";
 // Дополнительный импорт стилей
 import "flatpickr/dist/flatpickr.min.css";
+// Библиотека уведомлений
+import Notiflix from 'notiflix';
 
-const refs = {
-  btnStart: document.querySelector('button[data-start]'),
-  clockface: document.querySelector('#datetime-picker'),
-  days: document.querySelector('[data-days]'),
-  hours: document.querySelector('[data-hours]'),
-  minutes: document.querySelector('[data-minutes]'),
-  seconds: document.querySelector('[data-seconds]'),
 
-  timer: document.querySelector('.timer'),
-  field: document.querySelector('.field'),
 
-};
 
-/* Оформление таймера стилями
- */
-// refs.timer.style.display = 'flex';
-// refs.timer.style.marginTop = '10px';
-// refs.field.marginRight = '10px';
 
-/*Запускаем таймер с помощью
-"Адской копипасты"
- */
-class Timer {
-  constructor({onTick}) {
-    this.intervalId = null;
-    this.isActive = false;
-    this.onTick = onTick;
 
-    this.init();
-  }
+// const refs = {
+//   btnStart: document.querySelector('button[data-start]'),
+//   clockface: document.querySelector('#datetime-picker'),
+//   days: document.querySelector('[data-days]'),
+//   hours: document.querySelector('[data-hours]'),
+//   minutes: document.querySelector('[data-minutes]'),
+//   seconds: document.querySelector('[data-seconds]'),
 
-  init() {
-    const time = this.convertMs(0);
-    this.onTick(time);
-  }
+//   timer: document.querySelector('.timer'),
+//   field: document.querySelector('.field'),
 
-    start() {
-    if (this.isActive) {
-      return;
-        }
+// };
+
+// /* Оформление таймера стилями
+//  */
+// // refs.timer.style.display = 'flex';
+// // refs.timer.style.marginTop = '10px';
+// // refs.field.marginRight = '10px';
+
+// /*Запускаем таймер с помощью
+// "Адской копипасты"
+//  */
+// class Timer {
+//   constructor({onTick}) {
+//     this.intervalId = null;
+//     this.isActive = false;
+//     this.onTick = onTick;
+
+//     this.init();
+//   }
+
+//   init() {
+//     const time = this.convertMs(0);
+//     this.onTick(time);
+//   }
+
+//     start() {
+//     if (this.isActive) {
+//       return;
+//         }
       
-/* Создаём таймер, он будет считать!
- */
-    const startTime = Date.now();
-    this.isActive = true;
+// /* Создаём таймер, он будет считать!
+//  */
+//     const startTime = Date.now();
+//     this.isActive = true;
 
-    this.intervalId = setInterval(() => {
-      const currentTime = Date.now();
-      const deltaTime = selectedDates[0].startTime - currentTime;
-      const time = this.convertMs(deltaTime);
+//     this.intervalId = setInterval(() => {
+//       const currentTime = Date.now();
+//       const deltaTime = selectedDates[0].startTime - currentTime;
+//       const time = this.convertMs(deltaTime);
       
-      this.onTick(time);
-      console.log(time);
-}, 1000);
-  }
+//       this.onTick(time);
+//       console.log(time);
+// }, 1000);
+//   }
   
 
-  /*Адская копипаста с библиотеки!
-Для подсчета значений используй готовую функцию convertMs, 
-где ms - разница между конечной и текущей датой в миллисекундах.
-Показывая четыре цифры: дни, часы, минуты и секунды в формате xx:xx:xx:xx.
- */
-convertMs(ms) {
-  // Number of milliseconds per unit of time
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
+//   /*Адская копипаста с библиотеки!
+// Для подсчета значений используй готовую функцию convertMs, 
+// где ms - разница между конечной и текущей датой в миллисекундах.
+// Показывая четыре цифры: дни, часы, минуты и секунды в формате xx:xx:xx:xx.
+//  */
+// convertMs(ms) {
+//   // Number of milliseconds per unit of time
+//   const second = 1000;
+//   const minute = second * 60;
+//   const hour = minute * 60;
+//   const day = hour * 24;
 
-  // Remaining days
-  const days = this.addLeadingZero(Math.floor(ms / day));
-  // Remaining hours
-  const hours = this.addLeadingZero(Math.floor((ms % day) / hour));
-  // Remaining minutes
-  const minutes = this.addLeadingZero(Math.floor(((ms % day) % hour) / minute));
-  // Remaining seconds
-  const seconds = this.addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
+//   // Remaining days
+//   const days = this.addLeadingZero(Math.floor(ms / day));
+//   // Remaining hours
+//   const hours = this.addLeadingZero(Math.floor((ms % day) / hour));
+//   // Remaining minutes
+//   const minutes = this.addLeadingZero(Math.floor(((ms % day) % hour) / minute));
+//   // Remaining seconds
+//   const seconds = this.addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
   
-  return { days, hours, minutes, seconds };
-  }
+//   return { days, hours, minutes, seconds };
+//   }
   
   
-/* Форматирование времени!
-Принимает число, приводит к строке и добавляет 
-в начало 0 если число меньше 2-х знаков.
- */
-addLeadingZero(value) {
-    return String(value).padStart(2, '0');
-  }
+// /* Форматирование времени!
+// Принимает число, приводит к строке и добавляет 
+// в начало 0 если число меньше 2-х знаков.
+//  */
+// addLeadingZero(value) {
+//     return String(value).padStart(2, '0');
+//   }
   
-}
+// }
 
-const timer = new Timer({
-  onTick: updateClockfase,
-});
+// const timer = new Timer({
+//   onTick: updateClockfase,
+// });
 
-refs.btnStart.addEventListener('click', timer.start.bind(timer));
+// refs.btnStart.addEventListener('click', timer.start.bind(timer));
 
 
 
-/*Принимает время в милисекундах
-Вичесляет сколько в них вмещает дней, часов, минут, секунд
- */
-function updateClockfase({ days, hours, minutes, seconds }) {
-  // refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
-  refs.days.textContent = `${days}`;
-  refs.hours.textContent = `${hours}`;
-  refs.minutes.textContent = `${minutes}`;
-  refs.seconds.textContent = `${seconds}`;
-}
-console.log(refs.clockface.textContent);
+// /*Принимает время в милисекундах
+// Вичесляет сколько в них вмещает дней, часов, минут, секунд
+//  */
+// function updateClockfase({ days, hours, minutes, seconds }) {
+//   // refs.clockface.textContent = `${days}:${hours}:${minutes}:${seconds}`;
+//   refs.days.textContent = `${days}`;
+//   refs.hours.textContent = `${hours}`;
+//   refs.minutes.textContent = `${minutes}`;
+//   refs.seconds.textContent = `${seconds}`;
+// }
+// console.log(refs.clockface.textContent);
 
-/*Библиотека flatpickr Дата и время.
- */
-const flatpickr = flatpickr("#datetime-picker", options = {
-  enableTime: true,
-  dateFormat: "Y-m-d H:i",
-  time_24hr: true,
-  defaultDate: new Date(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-    console.log(`Выбранная дата: ${selectedDates[0]}`);
-  },
-});
+// /*Библиотека flatpickr Дата и время.
+//  */
+// const flatpickr = flatpickr("#datetime-picker", options = {
+//   enableTime: true,
+//   dateFormat: "Y-m-d H:i",
+//   time_24hr: true,
+//   defaultDate: new Date(),
+//   minuteIncrement: 1,
+//   onClose(selectedDates) {
+//     console.log(`Выбранная дата: ${selectedDates[0]}`);
+//   },
+// });
 
 
 
