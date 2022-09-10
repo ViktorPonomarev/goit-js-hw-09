@@ -6,22 +6,21 @@ import "flatpickr/dist/flatpickr.min.css";
 import Notiflix from 'notiflix';
 
 
+// Достаём елементы
+const refs = {
+  btnStart: document.querySelector('button[data-start]'),
+  clockface: document.querySelector('#datetime-picker'),
+  days: document.querySelector('[data-days]'),
+  hours: document.querySelector('[data-hours]'),
+  minutes: document.querySelector('[data-minutes]'),
+  seconds: document.querySelector('[data-seconds]'),
+
+  timer: document.querySelector('.timer'),
+  field: document.querySelector('.field'),
+
+};
 
 
-
-
-// const refs = {
-//   btnStart: document.querySelector('button[data-start]'),
-//   clockface: document.querySelector('#datetime-picker'),
-//   days: document.querySelector('[data-days]'),
-//   hours: document.querySelector('[data-hours]'),
-//   minutes: document.querySelector('[data-minutes]'),
-//   seconds: document.querySelector('[data-seconds]'),
-
-//   timer: document.querySelector('.timer'),
-//   field: document.querySelector('.field'),
-
-// };
 
 // /* Оформление таймера стилями
 //  */
