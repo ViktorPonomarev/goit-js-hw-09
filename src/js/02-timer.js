@@ -62,22 +62,25 @@ const options = {
       Notiflix.Notify.warning('Please choose a date in the future');
     } else {
       btnStart.disabled = false;
-     
+      selector.disabled = false;
+
       btnStart.addEventListener('click', () => {
-btnStart.disabled = true;
+      btnStart.disabled = true;
+        selector.disabled = true;
+
         const timer = setInterval(() => {
           
-          const newTime = Date.now();
-          this.isActive = true;
-          const newDelta = selectedDates[0].getTime() - newTime;
-          const newTimeComp = convertMs(newDelta);
-          seconds.textContent = addLeadingZero(newTimeComp.seconds);
-          minutes.textContent = addLeadingZero(newTimeComp.minutes);
-          hours.textContent = addLeadingZero(newTimeComp.hours);
-          days.textContent = addLeadingZero(newTimeComp.days);
-          console.log(newDelta);
-          if (newDelta <= 1000) {
-            clearInterval(timer);
+        const newTime = Date.now();
+        this.isActive = true;
+        const newDelta = selectedDates[0].getTime() - newTime;
+        const newTimeComp = convertMs(newDelta);
+        seconds.textContent = addLeadingZero(newTimeComp.seconds);
+        minutes.textContent = addLeadingZero(newTimeComp.minutes);
+        hours.textContent = addLeadingZero(newTimeComp.hours);
+        days.textContent = addLeadingZero(newTimeComp.days);
+        console.log(newDelta);
+        if (newDelta <= 1000) {
+        clearInterval(timer);
 
             
           }
