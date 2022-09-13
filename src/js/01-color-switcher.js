@@ -14,7 +14,7 @@ const refs = {
 // Вешаем слушателя на кнопки
 refs.btnStart.addEventListener('click', onClickStartColor);
 refs.btnStop.addEventListener('click', onClickStopColor);
-
+refs.btnStop.disabled = true;
 // Глобальная переменная timerId
 let timerId = null;
 
