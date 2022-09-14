@@ -35,7 +35,7 @@ function createPromise(position, delay) {
   });
 }
 
- 
+ console.log(createPromise);
 
 function onFormSubmit(e) {
   e.preventDefault();
@@ -64,5 +64,5 @@ let evtAmount = Number(refs.amount.value);
     }
 }
       
-
+console.log(onFormSubmit);
 
