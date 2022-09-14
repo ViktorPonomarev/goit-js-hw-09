@@ -52,17 +52,14 @@ let evtAmount = Number(refs.amount.value);
     */
     createPromise(i, evtDelay)
       .then(({ position, delay }) => {
-        setTimeout(() => {
-          Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        }, delay);
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+       })
     
-      })
-    .catch(({ position, delay }) => {
-      setTimeout(() => { 
-      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-    }, delay);
-    
-  evtDelay += evtStep});
+      .catch(({ position, delay }) => {
+     Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+    });
+    evtDelay += evtStep;
+
   }
 }
       
