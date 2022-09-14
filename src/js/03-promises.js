@@ -57,10 +57,11 @@ let evtAmount = Number(refs.amount.value);
     
       .catch(({ position, delay }) => {
      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
-    });
+      });
+    
     evtDelay += evtStep;
-
-  }
+    
+    }
 }
       
 
