@@ -35,15 +35,19 @@ function createPromise(position, delay) {
   });
 }
 
- console.log(createPromise);
+
 
 function onFormSubmit(e) {
   e.preventDefault();
 
  let evtDelay = Number(refs.delay.value);
 let evtStep = Number(refs.step.value);
-let evtAmount = Number(refs.amount.value);
-
+  let evtAmount = Number(refs.amount.value);
+  
+console.log('delay:', evtDelay); 
+console.log('step:', evtStep); 
+  console.log('amount:', evtAmount); 
+  
   // Через фор вычесляем значения
   for (let i = 1; i <= evtAmount; i++) {
 
@@ -60,9 +64,9 @@ let evtAmount = Number(refs.amount.value);
       });
     
     evtDelay += evtStep;
-    
+   
     }
 }
-      
-console.log(onFormSubmit);
+ 
+
 
